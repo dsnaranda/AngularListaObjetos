@@ -1,0 +1,65 @@
+<div *ngIf="isOpen" class="container mt-4">
+    <h2 class="text-center mb-4">Agregar nuevo Estudiante</h2>
+
+    <form (ngSubmit)="onSubmit()" class="border p-4 shadow rounded bg-light">
+        <div class="mb-3">
+            <label for="codigo" class="form-label">Código</label>
+            <input type="number" id="codigo" [(ngModel)]="oEstudiante.codigo" name="codigo" class="form-control"
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label for="cedula" class="form-label">Cédula</label>
+            <input type="text" id="cedula" [(ngModel)]="oEstudiante.cedula" name="cedula" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" id="nombre" [(ngModel)]="oEstudiante.nombre" name="nombre" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="apellido" class="form-label">Apellido</label>
+            <input type="text" id="apellido" [(ngModel)]="oEstudiante.apellido" name="apellido" class="form-control"
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label for="sexo" class="form-label">Sexo</label>
+            <select id="sexo" [(ngModel)]="oEstudiante.sexo" name="sexo" class="form-control" required>
+                <option value="" disabled selected>Seleccione...</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+            </select>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="fechaNacimiento" class="form-label">Fecha Nacimiento</label>
+            <input type="text" id="fechaNacimiento" [(ngModel)]="oEstudiante.fechaNacimiento" name="fechaNacimiento"
+                class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="parcial1" class="form-label">Nota Parcial 1</label>
+            <input type="number" id="parcial1" [(ngModel)]="oEstudiante.parcial1" name="parcial1" class="form-control"
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label for="parcial2" class="form-label">Nota Parcial 2</label>
+            <input type="number" id="parcial2" [(ngModel)]="oEstudiante.parcial2" name="parcial2" class="form-control"
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label for="ER" class="form-label">Examen Recuperación</label>
+            <input type="number" id="ER" [(ngModel)]="oEstudiante.ER" name="ER" class="form-control">
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="button" (click)="closeModal()" class="btn btn-secondary">Cancelar</button>
+        </div>
+    </form>
+</div>

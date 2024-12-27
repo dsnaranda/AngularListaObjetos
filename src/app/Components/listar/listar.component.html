@@ -1,0 +1,103 @@
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Sistema Estudiantes</h1>
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-header">
+                    Porcentaje de Estudiantes Aprobados y Reprobados
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Aprobados: {{ porcentajeAprobados }}%</p>
+                    <p class="card-text">Reprobados: {{ porcentajeReprobados }}%</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-header">
+                    Porcentaje de Aprobados por Sexo
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Masculino: {{ porcentajeAprobadosSexo.masculino }}%</p>
+                    <p class="card-text">Femenino: {{ porcentajeAprobadosSexo.femenino }}%</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-header">
+                    Promedio General y Mayor Nota
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Promedio General: {{ promedioGeneral }}</p>
+                    <p class="card-text">Estudiante con Mayor Nota: {{ estudianteMayorNota?.nombre }} {{
+                        estudianteMayorNota?.apellido }} ({{ estudianteMayorNota?.ND }})</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="d-flex justify-content-between align-items-center mt-3 mb-3">
+        <h2 class="h4">Estudiantes Registrados</h2>
+        <button class="btn btn-primary" (click)="isOpen=true; selectedEstudiante=null">
+            <i class="bi bi-plus-circle"></i> Agregar Estudiante
+        </button>
+    </div>
+
+    
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Código</th>
+                    <th>Cédula</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Sexo</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Parcial 1</th>
+                    <th>Parcial 2</th>
+                    <th>Nota Final</th>
+                    <th>Examen Recuperación</th>
+                    <th>Nota Definitiva</th>
+                    <th>Estado Aprobatorio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let estudiante of estudiantes; let i = index">
+                    <td>{{ estudiante.codigo }}</td>
+                    <td>{{ estudiante.cedula }}</td>
+                    <td>{{ estudiante.nombre }}</td>
+                    <td>{{ estudiante.apellido }}</td>
+                    <td>{{ estudiante.sexo }}</td>
+                    <td>{{ estudiante.fechaNacimiento }}</td>
+                    <td>{{ estudiante.parcial1 }}</td>
+                    <td>{{ estudiante.parcial2 }}</td>
+                    <td>{{ estudiante.CF }}</td>
+                    <td>{{ estudiante.ER }}</td>
+                    <td>{{ estudiante.ND }}</td>
+                    <td>{{ estudiante.estado ? 'Aprobado' : 'Reprobado' }}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm me-2" (click)="editEstudiante(estudiante)">
+                            <i class="bi bi-pencil"></i> Editar
+                        </button>
+                        <button class="btn btn-danger btn-sm" (click)="deleteEstudiante(i)">
+                            <i class="bi bi-trash"></i> Eliminar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<app-agregar [isOpen]="isOpen" [selectedEstudiante]="selectedEstudiante" (close)="onCloseModal()">
+</app-agregar>
